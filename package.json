@@ -4,6 +4,7 @@
   "description": "JSMpeg – MPEG1 Video & MP2 Audio Decoder in JavaScript (npm packaged)",
   "main": "jsmpeg.min.js",
   "scripts": {
+    "build": "EMSCRIPTEN=./node_modules/emcc/emsdk/fastcomp/emscripten PATH=./node_modules/emcc/emsdk/fastcomp/emscripten:$PATH ./build.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/artss/jsmpeg/issues"
   },
-  "homepage": "https://github.com/artss/jsmpeg#readme"
+  "homepage": "https://github.com/artss/jsmpeg#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "emcc": "^0.2.2",
+    "uglify-js": "^3.6.0"
+  }
 }
