@@ -1,0 +1,23 @@
+{
+  "name": "jsmpeg",
+  "version": "1.0.0",
+  "description": "JSMpeg – MPEG1 Video & MP2 Audio Decoder in JavaScript (npm packaged)",
+  "main": "jsmpeg.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artss/jsmpeg.git"
+  },
+  "keywords": [
+    "jsmpeg",
+    "mpeg1"
+  ],
+  "author": "Arts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artss/jsmpeg/issues"
+  },
+  "homepage": "https://github.com/artss/jsmpeg#readme"
+}
