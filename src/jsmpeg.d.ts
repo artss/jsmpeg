@@ -1,19 +1,34 @@
 declare module 'jsmpeg' {
-  interface Decoder {
-    connect(destination: any): void;
-    destroy(): void;
-    seek(time: number): void;
-    getCurrentTime(): number;
-  }
+  export interface BitBuffer {}
 
-  interface Source {
-    connect(): void;
+  export interface Source {
+    connect(destination: any): void;
+    write(buffer: BitBuffer): void;
     start(): void;
     resume(secondsHeadroom: number): void;
     destroy(): void;
+    established: boolean;
+    completed: boolean;
+    progress: number;
   }
 
-  interface PlayerOptions {
+  export interface Demuxer {
+    connect(destination: any): void;
+    write(buffer: BitBuffer): void;
+    currentTime: number;
+    startTime: number;
+  }
+
+  export interface Decoder {
+    connect(destination: any): void;
+    write(buffer: BitBuffer): void;
+    decode(): void;
+    seek(time: number): void;
+    currentTime: number;
+    startTime: number;
+  }
+
+  export interface PlayerOptions {
     canvas?: HTMLCanvasElement;
     loop?: boolean;
     autoplay?: boolean;
@@ -23,7 +38,7 @@ declare module 'jsmpeg' {
     pauseWhenHidden?: boolean;
     disableGl?: boolean;
     disableWebAssembly?: boolean;
-    preserveDrawingBuffer: boolean;
+    preserveDrawingBuffer?: boolean;
     progressive?: boolean;
     throttled?: boolean;
     chunkSize?: number;
@@ -31,8 +46,8 @@ declare module 'jsmpeg' {
     maxAudioLag?: number;
     videoBufferSize?: number;
     audioBufferSize?: number;
-    onVideoDecode?: (decoder: any, time: number) => void;
-    onAudioDecode?: (decoder: any, time: number) => void;
+    onVideoDecode?: (decoder: Decoder, time: number) => void;
+    onAudioDecode?: (decoder: Decoder, time: number) => void;
     onPlay?: (player: Player) => void;
     onPause?: (player: Player) => void;
     onEnded?: (player: Player) => void;
@@ -40,21 +55,29 @@ declare module 'jsmpeg' {
     onSourceEstablished?: (source: Source) => void;
     onSourceCompleted?: (source: Source) => void;
   }
-  class Player {
+
+  export class Player {
     constructor(url: string | WebSocket, options?: PlayerOptions);
     play(): void;
     pause(): void;
     stop(): void;
     nextFrame(): void;
     destroy(): void;
+    getVolume(): number;
+    setVolume(volume: number): void;
+    getCurrentTime(): number;
+    setCurrentTime(time: number): void;
     volume: number;
     currentTime: number;
     paused: boolean;
   }
 
-  interface JSMpeg {
-    Player: Player;
-  }
+  // tslint:disable-next-line:function-name
+  export function Now(): number;
 
-  export = JSMpeg;
+  // tslint:disable-next-line:function-name
+  export function Fill(array: any[], value: any): void;
+
+  // tslint:disable-next-line:function-name
+  export function Base64ToArrayBuffer(base64: string): ArrayBuffer;
 }
