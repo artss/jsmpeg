@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "JSMpeg – MPEG1 Video & MP2 Audio Decoder in JavaScript (npm packaged)",
   "main": "jsmpeg.min.js",
+  "typings": "./src/jspmeg.d.ts",
   "scripts": {
     "build": "EMSCRIPTEN=./node_modules/emcc/emsdk/fastcomp/emscripten PATH=./node_modules/emcc/emsdk/fastcomp/emscripten:$PATH ./build.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
