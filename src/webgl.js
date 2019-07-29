@@ -1,6 +1,7 @@
 JSMpeg.Renderer.WebGL = (function(){ "use strict";
 
 var WebGLRenderer = function(options) {
+  this._removeCanvas = !options.canvas;
 	this.canvas = options.canvas || document.createElement('canvas');
 	this.width = this.canvas.width;
 	this.height = this.canvas.height;
@@ -75,7 +76,7 @@ WebGLRenderer.prototype.destroy = function() {
 	gl.deleteBuffer(this.vertexBuffer);
 
 	gl.getExtension('WEBGL_lose_context').loseContext();
-	this.canvas.remove();
+	this._removeCanvas && this.canvas.remove();
 };
 
 WebGLRenderer.prototype.resize = function(width, height) {
